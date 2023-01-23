@@ -6,6 +6,7 @@ export const pokemonSlice = createSlice({
     page: 0,
     pokemons: [],
     isLoading: false,
+    pageCounter: 0,
   },
   reducers: {
     startLoadingPokemons: (state) => {
@@ -16,7 +17,19 @@ export const pokemonSlice = createSlice({
       state.page = action.payload.page;
       state.pokemons = action.payload.pokemons;
     },
+    incrementPage: (state) => {
+      state.pageCounter += 1;
+    },
+    decrementPage: (state) => {
+      if (state.pageCounter === 0) return;
+      state.pageCounter -= 1;
+    },
   },
 });
 
-export const { startLoadingPokemons, setPokemons } = pokemonSlice.actions;
+export const {
+  startLoadingPokemons,
+  setPokemons,
+  incrementPage,
+  decrementPage,
+} = pokemonSlice.actions;
